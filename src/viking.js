@@ -65,42 +65,41 @@ class War {
   vikingAttack() {
     const saxonIndex = Math.floor(Math.random() * this.saxonArmy.length);
     const vikingIndex = Math.floor(Math.random() * this.vikingArmy.length);
-    const badViking = this.vikingArmy[vikingIndex];
+
     const poorSaxon = this.saxonArmy[saxonIndex];
-    const theDamage = poorSaxon.receiveDamage(badViking.attack());
+    const badViking = this.vikingArmy[vikingIndex];
+
+    const damage = poorSaxon.receiveDamage(badViking.attack());
+
     if (poorSaxon.health <= 0) {
       this.saxonArmy.splice(saxonIndex, 1);
     }
+    return damage;
   }
+
   saxonAttack() {
-    //same as above
+    const saxonIndex = Math.floor(Math.random() * this.saxonArmy.length);
+    const vikingIndex = Math.floor(Math.random() * this.vikingArmy.length);
+
+    const badSaxon = this.saxonArmy[saxonIndex];
+    const poorViking = this.vikingArmy[vikingIndex];
+
+    const damage = poorViking.receiveDamage(badSaxon.attack());
+
+    if (poorViking.health <= 0) {
+      this.vikingArmy.splice(vikingIndex, 1);
+    }
+    return damage;
   }
 
   showStatus() {
-    //     if (!this.saxonArmy.length === 0) {   //To create a falsey value ie if NOT a falsey value then...
-    //         return 'vikings...won war'
-    //     } else if (!this.vikingArmy.length === 0) {
-    //         return 'saxons have fourght...'
-    //     } else return 'vikings and saxons are still in the thick of battle.'
-    //  }
+    if (!this.saxonArmy.length) {
+      // a falsey value
+      return "Vikings have won the war of the century!";
+    }
+    if (!this.vikingArmy.length) {
+      return "Saxons have fought for their lives and survived another day...";
+    }
+    return "Vikings and Saxons are still in the thick of battle.";
   }
-
-  attackmode(attacker, victim) {
-    //   const attackerIndex = Math.floor(Math.random() * this.attackerArmy???.length);
-    //   const victimIndex = //same as above
-    //   const attacker = this.Army[attackerIndex]
-    //   const victim = this.saxonArmy[victimIndex];
-    //   const theDamage = poorViking.receiveDamage(badSaxon.attack());
-    //   if(poorsaxon.health <= 0){
-    //     this.saxonArmy.splice(saxonIndex,1);
-    // }
-  }
-
-  //     constructor(attackerIndex, victimIndex) {
-  // class attackMode {
-  //         this.attackerIndex =  Math.floor(Math.random() * this.saxonArmy.length);
-  //         this.victimIndex = Math.floor(Math.random() * this.saxonArmy.length);
-  //     }
-
-  //     if ()
 }
